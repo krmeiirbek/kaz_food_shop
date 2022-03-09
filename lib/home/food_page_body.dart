@@ -1,3 +1,4 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
 import 'package:kaz_food_shop/widgets/big_text.dart';
@@ -35,15 +36,31 @@ class _FoodPageBodyState extends State<FoodPageBody> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 320,
-      child: PageView.builder(
-        controller: pageController,
-        itemCount: 5,
-        itemBuilder: (context, position) {
-          return _buildPageItem(position);
-        },
-      ),
+    return Column(
+      children: [
+        SizedBox(
+          height: 320,
+          child: PageView.builder(
+            controller: pageController,
+            itemCount: 5,
+            itemBuilder: (context, position) {
+              return _buildPageItem(position);
+            },
+          ),
+        ),
+        new DotsIndicator(
+          dotsCount: 5,
+          position: _currPageValue,
+          decorator: DotsDecorator(
+            size: const Size.square(9.0),
+            activeSize: const Size(18.0, 9.0),
+            activeColor: AppColors.mainColor,
+            activeShape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -106,15 +123,15 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   BoxShadow(
                     color: Color(0xffe8e8e8),
                     blurRadius: 5.0,
-                    offset: Offset(0,5),
+                    offset: Offset(0, 5),
                   ),
                   BoxShadow(
                     color: Colors.white,
-                    offset: Offset(-5,0),
+                    offset: Offset(-5, 0),
                   ),
                   BoxShadow(
                     color: Colors.white,
-                    offset: Offset(5,0),
+                    offset: Offset(5, 0),
                   ),
                 ],
               ),
