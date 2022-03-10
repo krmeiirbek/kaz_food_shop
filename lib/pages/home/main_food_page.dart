@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kaz_food_shop/home/food_page_body.dart';
+import 'package:kaz_food_shop/pages/home/food_page_body.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
 import 'package:kaz_food_shop/utils/dimensions.dart';
 import 'package:kaz_food_shop/widgets/big_text.dart';

@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
 import 'package:kaz_food_shop/utils/dimensions.dart';
+import 'package:kaz_food_shop/widgets/app_column.dart';
 import 'package:kaz_food_shop/widgets/big_text.dart';
 import 'package:kaz_food_shop/widgets/icon_and_text_widget.dart';
 import 'package:kaz_food_shop/widgets/small_text.dart';
@@ -95,8 +96,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     height: Dimensions.listViewImgSize,
                     width: Dimensions.listViewImgSize,
                     decoration: BoxDecoration(
-                      borderRadius:
-                          BorderRadius.circular(Dimensions.radius20),
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
                       color: Colors.white38,
                       image: const DecorationImage(
                         fit: BoxFit.cover,
@@ -114,7 +114,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         ),
                         boxShadow: const [
                           BoxShadow(
-                            offset: Offset(-5,0),
+                            offset: Offset(-5, 0),
                             blurRadius: 10,
                             color: Colors.white,
                           ),
@@ -130,9 +130,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            BigText(text: 'Nutritious fruit meal in China'),
+                            const BigText(text: 'Nutritious fruit meal in China'),
                             SizedBox(height: Dimensions.height10),
-                            SmallText(text: 'With chinese characteristics'),
+                            const SmallText(text: 'With chinese characteristics'),
                             SizedBox(height: Dimensions.height10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -244,55 +244,8 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                     left: Dimensions.height15,
                     right: Dimensions.height15,
                     top: Dimensions.height15),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const BigText(text: 'Chinese Side'),
-                    SizedBox(height: Dimensions.height10),
-                    Row(
-                      children: [
-                        Wrap(
-                          children: List.generate(
-                            5,
-                            (index) => Icon(
-                              Icons.star,
-                              color: AppColors.mainColor,
-                              size: Dimensions.iconSize15,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const SmallText(text: "5.0"),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const SmallText(text: "1287 comments"),
-                      ],
-                    ),
-                    SizedBox(height: Dimensions.height20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        IconAndTextWidget(
-                          icon: Icons.circle_sharp,
-                          text: 'Normal',
-                          iconColor: AppColors.iconColor1,
-                        ),
-                        IconAndTextWidget(
-                          icon: Icons.location_on,
-                          text: '1.7km',
-                          iconColor: AppColors.mainColor,
-                        ),
-                        IconAndTextWidget(
-                          icon: Icons.access_time_rounded,
-                          text: '32min',
-                          iconColor: AppColors.iconColor2,
-                        ),
-                      ],
-                    ),
-                  ],
+                child: const AppColumn(
+                  text: 'Chinese Side',
                 ),
               ),
             ),
