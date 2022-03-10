@@ -4,6 +4,7 @@ import 'package:kaz_food_shop/utils/dimensions.dart';
 import 'package:kaz_food_shop/widgets/app_column.dart';
 import 'package:kaz_food_shop/widgets/app_icon.dart';
 import 'package:kaz_food_shop/widgets/big_text.dart';
+import 'package:kaz_food_shop/widgets/expandable_text_widget.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   const PopularFoodDetail({Key? key}) : super(key: key);
@@ -64,6 +65,15 @@ class PopularFoodDetail extends StatelessWidget {
                   ),
                   SizedBox(height: Dimensions.height20),
                   const BigText(text: "Introduce"),
+                  SizedBox(height: Dimensions.height20),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: ExpandableTextWidget(
+                        text:
+                            'KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.',
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
