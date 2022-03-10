@@ -86,6 +86,7 @@ class PopularFoodDetail extends StatelessWidget {
           ),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               padding: EdgeInsets.only(
@@ -106,6 +107,22 @@ class PopularFoodDetail extends StatelessWidget {
                   SizedBox(width: Dimensions.width5),
                   const Icon(Icons.add, color: AppColors.signColor),
                 ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                top: Dimensions.height20,
+                bottom: Dimensions.height20,
+                left: Dimensions.width20,
+                right: Dimensions.width20,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(Dimensions.radius20),
+                color: AppColors.mainColor,
+              ),
+              child: const BigText(
+                text: "\$10 | Add to cart",
+                color: Colors.white,
               ),
             ),
           ],
