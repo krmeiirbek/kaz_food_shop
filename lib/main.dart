@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kaz_food_shop/controllers/popular_product_controller.dart';
 import 'package:kaz_food_shop/pages/food/recommended_food_detail.dart';
 
 import 'helper/dependencies.dart' as dep;
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<PopularProductController>().getPopularProductList();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Food App',

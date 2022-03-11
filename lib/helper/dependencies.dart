@@ -5,7 +5,7 @@ import 'package:kaz_food_shop/data/repository/popular_product_repo.dart';
 
 Future<void> init() async{
   //api client
-  Get.lazyPut(() => ApiClient(appBaseUrl: ''));
+  Get.lazyPut(() => ApiClient(appBaseUrl: 'http://mvs.bslmeiyu.com'));
   //repos
   Get.lazyPut(() => PopularProductRepo(apiClient: Get.find()));
   // controllers
