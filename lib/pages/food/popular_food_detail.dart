@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kaz_food_shop/controllers/popular_product_controller.dart';
+import 'package:kaz_food_shop/models/products_model.dart';
+import 'package:kaz_food_shop/routes/route_helper.dart';
+import 'package:kaz_food_shop/utils/app_constants.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
 import 'package:kaz_food_shop/utils/dimensions.dart';
 import 'package:kaz_food_shop/widgets/app_column.dart';
@@ -7,10 +12,12 @@ import 'package:kaz_food_shop/widgets/big_text.dart';
 import 'package:kaz_food_shop/widgets/expandable_text_widget.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({Key? key}) : super(key: key);
+  final int pageId;
+  const PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    ProductsModel product = Get.find<PopularProductController>().popularProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -21,10 +28,11 @@ class PopularFoodDetail extends StatelessWidget {
             child: Container(
               width: double.maxFinite,
               height: Dimensions.popularFoodImgSize,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/images/food0.png')),
+                    image: NetworkImage(AppConstants.UPLOADS_URL + product.img!),
+                ),
               ),
             ),
           ),
@@ -34,9 +42,14 @@ class PopularFoodDetail extends StatelessWidget {
             right: Dimensions.width20,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                AppIcon(icon: Icons.arrow_back_ios),
-                AppIcon(icon: Icons.shopping_cart_outlined),
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.initial);
+                  },
+                  child: const AppIcon(icon: Icons.arrow_back_ios),
+                ),
+                const AppIcon(icon: Icons.shopping_cart_outlined),
               ],
             ),
           ),
@@ -60,8 +73,8 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const AppColumn(
-                    text: 'Chinese Side',
+                  AppColumn(
+                    text: product.name!,
                   ),
                   SizedBox(height: Dimensions.height20),
                   const BigText(text: "Introduce"),
@@ -69,8 +82,7 @@ class PopularFoodDetail extends StatelessWidget {
                   Expanded(
                     child: SingleChildScrollView(
                       child: ExpandableTextWidget(
-                        text:
-                            'KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.KAzybek Meiirbek djnjdas asdkj askdk fasjasf afdjkaffakfd dkdfs dfdfkdf dfsdgsgd dfd  fdmdffd dfmdfkass fdf fdskdf dfjkdfjsdf dfkdf dffdkfds dfkdf dfkdf f fd.',
+                        text: product.description!
                       ),
                     ),
                   ),
@@ -130,8 +142,8 @@ class PopularFoodDetail extends StatelessWidget {
                 borderRadius: BorderRadius.circular(Dimensions.radius20),
                 color: AppColors.mainColor,
               ),
-              child: const BigText(
-                text: "\$10 | Add to cart",
+              child: BigText(
+                text: "\$${product.price!} | Add to cart",
                 color: Colors.white,
               ),
             ),

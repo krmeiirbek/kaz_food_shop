@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:kaz_food_shop/controllers/popular_product_controller.dart';
 import 'package:kaz_food_shop/controllers/recommended_product_controller.dart';
 import 'package:kaz_food_shop/pages/home/main_food_page.dart';
+import 'package:kaz_food_shop/routes/route_helper.dart';
 
 import 'helper/dependencies.dart' as dep;
 
@@ -22,9 +23,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Food App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
       home: const MainFoodPage(),
     );
   }

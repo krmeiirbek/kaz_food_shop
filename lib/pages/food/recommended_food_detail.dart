@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kaz_food_shop/controllers/recommended_product_controller.dart';
+import 'package:kaz_food_shop/models/products_model.dart';
+import 'package:kaz_food_shop/routes/route_helper.dart';
+import 'package:kaz_food_shop/utils/app_constants.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
 import 'package:kaz_food_shop/utils/dimensions.dart';
 import 'package:kaz_food_shop/widgets/app_icon.dart';
@@ -6,21 +11,32 @@ import 'package:kaz_food_shop/widgets/big_text.dart';
 import 'package:kaz_food_shop/widgets/expandable_text_widget.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({Key? key}) : super(key: key);
+  final int pageId;
+
+  const RecommendedFoodDetail({Key? key, required this.pageId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    ProductsModel product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: Dimensions.height10 * 7,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                AppIcon(icon: Icons.clear),
-                AppIcon(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed(RouteHelper.getInitial());
+                  },
+                  child: const AppIcon(icon: Icons.clear),
+                ),
+                const AppIcon(
                   icon: Icons.shopping_cart_outlined,
                 )
               ],
@@ -29,7 +45,8 @@ class RecommendedFoodDetail extends StatelessWidget {
               preferredSize: Size.fromHeight(Dimensions.height20),
               child: Container(
                 width: double.maxFinite,
-                padding: EdgeInsets.only(top: Dimensions.height5, bottom: Dimensions.height10),
+                padding: EdgeInsets.only(
+                    top: Dimensions.height5, bottom: Dimensions.height10),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -39,7 +56,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 ),
                 child: Center(
                     child: BigText(
-                  text: 'Sliver App Bar',
+                  text: product.name!,
                   size: Dimensions.font26,
                 )),
               ),
@@ -48,8 +65,8 @@ class RecommendedFoodDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: Dimensions.height30 * 10,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                "assets/images/food0.png",
+              background: Image.network(
+                AppConstants.UPLOADS_URL + product.img!,
                 width: double.maxFinite,
               ),
             ),
@@ -60,10 +77,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(
                       left: Dimensions.width20, right: Dimensions.width20),
-                  child: const ExpandableTextWidget(
-                    text:
-                        'class RecommendedFoodDetail extends StatelessWidget {const RecommendedFoodDetail({Key? key}) : super(key: key);@overrideWidget build(BuildContext context) {return Scaffold(body: CustomScrollView(slivers: [SliverAppBar(expandedHeight: 300,flexibleSpace: FlexibleSpaceBar(background: Image.asset(width: double.maxFinite,),),),SliverToBoxAdapter(child: Text(),),],),);}}class RecommendedFoodDetail extends StatelessWidget {const RecommendedFoodDetail({Key? key}) : super(key: key);@overrideWidget build(BuildContext context) {return Scaffold(body: CustomScrollView(slivers: [SliverAppBar(expandedHeight: 300,flexibleSpace: FlexibleSpaceBar(background: Image.asset(width: double.maxFinite,),),),SliverToBoxAdapter(child: Text(),),],),);}}class RecommendedFoodDetail extends StatelessWidget {const RecommendedFoodDetail({Key? key}) : super(key: key);@overrideWidget build(BuildContext context) {return Scaffold(body: CustomScrollView(slivers: [SliverAppBar(expandedHeight: 300,flexibleSpace: FlexibleSpaceBar(background: Image.asset(width: double.maxFinite,),),),SliverToBoxAdapter(child: Text(),),],),);}}class RecommendedFoodDetail extends StatelessWidget {const RecommendedFoodDetail({Key? key}) : super(key: key);@overrideWidget build(BuildContext context) {return Scaffold(body: CustomScrollView(slivers: [SliverAppBar(expandedHeight: 300,flexibleSpace: FlexibleSpaceBar(background: Image.asset(width: double.maxFinite,),),),SliverToBoxAdapter(child: Text(),),],),);}}',
-                  ),
+                  child: ExpandableTextWidget(text: product.description!),
                 ),
               ],
             ),
@@ -90,7 +104,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   iconSize: Dimensions.iconSize24,
                 ),
                 BigText(
-                  text: '\$12.88 X 0',
+                  text: '\$${product.price} X 0',
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
@@ -148,8 +162,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.mainColor,
                   ),
-                  child: const BigText(
-                    text: "\$10 | Add to cart",
+                  child: BigText(
+                    text: "\$${product.price} | Add to cart",
                     color: Colors.white,
                   ),
                 ),
