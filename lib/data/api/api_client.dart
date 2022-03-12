@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:kaz_food_shop/utils/app_constants.dart';
 
 class ApiClient extends GetConnect implements GetxService {
   late String token;
@@ -11,6 +12,7 @@ class ApiClient extends GetConnect implements GetxService {
   }){
     baseUrl = appBaseUrl;
     timeout = const Duration(seconds: 30);
+    token = AppConstants.TOKEN;
     _mainHeaders = {
       'Content-type':'application/json; charset=UTF-8',
       'Authorization':'Bearer $token',
