@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kaz_food_shop/controllers/cart_controller.dart';
 import 'package:kaz_food_shop/controllers/popular_product_controller.dart';
 import 'package:kaz_food_shop/models/products_model.dart';
 import 'package:kaz_food_shop/routes/route_helper.dart';
@@ -18,9 +19,10 @@ class PopularFoodDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductsModel product =
+    ProductModel product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    Get.find<PopularProductController>().initProduct();
+    Get.find<PopularProductController>()
+        .initProduct(product, Get.find<CartController>());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -133,7 +135,7 @@ class PopularFoodDetail extends StatelessWidget {
                           child: const Icon(Icons.remove,
                               color: AppColors.signColor)),
                       SizedBox(width: Dimensions.width5),
-                      BigText(text: '${popularProduct.quantity}'),
+                      BigText(text: '${popularProduct.inCartItems}'),
                       SizedBox(width: Dimensions.width5),
                       InkWell(
                         onTap: () {
@@ -156,9 +158,14 @@ class PopularFoodDetail extends StatelessWidget {
                     borderRadius: BorderRadius.circular(Dimensions.radius20),
                     color: AppColors.mainColor,
                   ),
-                  child: BigText(
-                    text: "\$${product.price!} | Add to cart",
-                    color: Colors.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      popularProduct.addItem(product);
+                    },
+                    child: BigText(
+                      text: "\$${product.price!} | Add to cart",
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],

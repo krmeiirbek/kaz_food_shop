@@ -105,7 +105,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                   itemCount: recommendedProducts.recommendedProductList.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(RouteHelper.getRecommendedFood(index));
                       },
                       child: Container(
@@ -125,8 +125,9 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                 color: Colors.white38,
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(
-                                      AppConstants.UPLOADS_URL + recommendedProducts.recommendedProductList[index].img!),
+                                  image: NetworkImage(AppConstants.UPLOADS_URL +
+                                      recommendedProducts
+                                          .recommendedProductList[index].img!),
                                 ),
                               ),
                             ),
@@ -155,12 +156,14 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                                     right: Dimensions.width10,
                                   ),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       BigText(
-                                          text: recommendedProducts.recommendedProductList[index].name!
-                                   ),
+                                          text: recommendedProducts
+                                              .recommendedProductList[index]
+                                              .name!),
                                       SizedBox(height: Dimensions.height10),
                                       const SmallText(
                                           text: 'With chinese characteristics'),
@@ -205,7 +208,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
     );
   }
 
-  Widget _buildPageItem(int position, ProductsModel popularProduct) {
+  Widget _buildPageItem(int position, ProductModel popularProduct) {
     Matrix4 matrix = Matrix4.identity();
     if (position == _currPageValue.floor()) {
       var currScale = 1 - (_currPageValue - position) * (1 - _scaleFactor);
