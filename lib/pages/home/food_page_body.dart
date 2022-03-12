@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:kaz_food_shop/controllers/popular_product_controller.dart';
 import 'package:kaz_food_shop/controllers/recommended_product_controller.dart';
 import 'package:kaz_food_shop/models/products_model.dart';
-import 'package:kaz_food_shop/pages/food/popular_food_detail.dart';
 import 'package:kaz_food_shop/routes/route_helper.dart';
 import 'package:kaz_food_shop/utils/app_constants.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
