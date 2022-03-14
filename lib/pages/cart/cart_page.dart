@@ -82,8 +82,9 @@ class CartPage extends StatelessWidget {
                                   color: Colors.white,
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image:
-                                        NetworkImage(AppConstants.UPLOADS_URL + cartController.getItems[index].img!),
+                                    image: NetworkImage(AppConstants
+                                            .UPLOADS_URL +
+                                        cartController.getItems[index].img!),
                                   ),
                                 ),
                               ),
@@ -98,7 +99,8 @@ class CartPage extends StatelessWidget {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       BigText(
-                                        text: cartController.getItems[index].name!,
+                                        text: cartController
+                                            .getItems[index].name!,
                                         color: Colors.black54,
                                       ),
                                       const SmallText(text: 'Spicy'),
@@ -107,7 +109,8 @@ class CartPage extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           BigText(
-                                            text: '\$ ${cartController.getItems[index].price}',
+                                            text:
+                                                '\$ ${cartController.getItems[index].price}',
                                             color: Colors.redAccent,
                                           ),
                                           Container(
@@ -127,7 +130,11 @@ class CartPage extends StatelessWidget {
                                               children: [
                                                 InkWell(
                                                     onTap: () {
-                                                      //popularProduct.setQuantity(false);
+                                                      cartController.addItem(
+                                                          cartController
+                                                              .getItems[index]
+                                                              .product!,
+                                                          -1);
                                                     },
                                                     child: const Icon(
                                                         Icons.remove,
@@ -135,13 +142,20 @@ class CartPage extends StatelessWidget {
                                                             .signColor)),
                                                 SizedBox(
                                                     width: Dimensions.width5),
-                                                const BigText(text: '0'),
-                                                //'${popularProduct.inCartItems}'),
+                                                BigText(
+                                                    text: cartController
+                                                        .getItems[index]
+                                                        .quantity
+                                                        .toString()),
                                                 SizedBox(
                                                     width: Dimensions.width5),
                                                 InkWell(
                                                   onTap: () {
-                                                    //popularProduct.setQuantity(true);
+                                                    cartController.addItem(
+                                                        cartController
+                                                            .getItems[index]
+                                                            .product!,
+                                                        1);
                                                   },
                                                   child: const Icon(Icons.add,
                                                       color:
