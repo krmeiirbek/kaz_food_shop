@@ -4,6 +4,7 @@ import 'package:kaz_food_shop/controllers/cart_controller.dart';
 import 'package:kaz_food_shop/controllers/popular_product_controller.dart';
 import 'package:kaz_food_shop/controllers/recommended_product_controller.dart';
 import 'package:kaz_food_shop/models/products_model.dart';
+import 'package:kaz_food_shop/pages/cart/cart_page.dart';
 import 'package:kaz_food_shop/routes/route_helper.dart';
 import 'package:kaz_food_shop/utils/app_constants.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
@@ -46,14 +47,19 @@ class RecommendedFoodDetail extends StatelessWidget {
                       children: [
                         const AppIcon(icon: Icons.shopping_cart_outlined),
                         Get.find<PopularProductController>().totalItems >= 1
-                            ? const Positioned(
+                            ? Positioned(
                                 right: 0,
                                 top: 0,
-                                child: AppIcon(
-                                  icon: Icons.circle,
-                                  size: 20,
-                                  iconColor: Colors.transparent,
-                                  backgroundColor: AppColors.mainColor,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    Get.to(() => const CartPage());
+                                  },
+                                  child: const AppIcon(
+                                    icon: Icons.circle,
+                                    size: 20,
+                                    iconColor: Colors.transparent,
+                                    backgroundColor: AppColors.mainColor,
+                                  ),
                                 ),
                               )
                             : Container(),

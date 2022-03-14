@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kaz_food_shop/controllers/cart_controller.dart';
 import 'package:kaz_food_shop/data/repository/popular_product_repo.dart';
+import 'package:kaz_food_shop/models/cart_model.dart';
 import 'package:kaz_food_shop/models/products_model.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
 
@@ -88,4 +89,6 @@ class PopularProductController extends GetxController {
   }
 
   int get totalItems => _cart.totalItems;
+
+  List<CartModel> get getItems => _cart.getItems;
 }
