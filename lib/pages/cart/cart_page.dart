@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kaz_food_shop/controllers/cart_controller.dart';
-import 'package:kaz_food_shop/pages/home/main_food_page.dart';
+import 'package:kaz_food_shop/routes/route_helper.dart';
 import 'package:kaz_food_shop/utils/app_constants.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
 import 'package:kaz_food_shop/utils/dimensions.dart';
@@ -33,7 +33,7 @@ class CartPage extends StatelessWidget {
                 SizedBox(width: Dimensions.width20 * 5),
                 GestureDetector(
                   onTap: () {
-                    Get.to(() => const MainFoodPage());
+                    Get.toNamed(RouteHelper.getInitial());
                   },
                   child: AppIcon(
                     icon: Icons.home_outlined,

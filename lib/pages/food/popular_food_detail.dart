@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:kaz_food_shop/controllers/cart_controller.dart';
 import 'package:kaz_food_shop/controllers/popular_product_controller.dart';
 import 'package:kaz_food_shop/models/products_model.dart';
-import 'package:kaz_food_shop/pages/cart/cart_page.dart';
 import 'package:kaz_food_shop/routes/route_helper.dart';
 import 'package:kaz_food_shop/utils/app_constants.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
@@ -66,7 +65,7 @@ class PopularFoodDetail extends StatelessWidget {
                                 top: 0,
                                 child: GestureDetector(
                                   onTap: (){
-                                    Get.to(() => const CartPage());
+                                    Get.toNamed(RouteHelper.getCartPage());
                                   },
                                   child: const AppIcon(
                                     icon: Icons.circle,
