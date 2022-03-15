@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:kaz_food_shop/pages/cart/cart_page.dart';
 import 'package:kaz_food_shop/pages/food/popular_food_detail.dart';
 import 'package:kaz_food_shop/pages/food/recommended_food_detail.dart';
-import 'package:kaz_food_shop/pages/home/main_food_page.dart';
+import 'package:kaz_food_shop/pages/home/home_page.dart';
 
 class RouteHelper {
   static const String initial = '/';
@@ -23,7 +23,7 @@ class RouteHelper {
   static List<GetPage> routes = [
     GetPage(
       name: initial,
-      page: () => const MainFoodPage(),
+      page: () => const HomePage(),
     ),
     GetPage(
       name: popularFood,
