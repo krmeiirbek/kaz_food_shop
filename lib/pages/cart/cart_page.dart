@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kaz_food_shop/controllers/cart_controller.dart';
+import 'package:kaz_food_shop/controllers/popular_product_controller.dart';
+import 'package:kaz_food_shop/controllers/recommended_product_controller.dart';
 import 'package:kaz_food_shop/routes/route_helper.dart';
 import 'package:kaz_food_shop/utils/app_constants.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
@@ -73,7 +75,23 @@ class CartPage extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap: () {
-
+                                  var popularIndex =
+                                      Get.find<PopularProductController>()
+                                          .popularProductList
+                                          .indexOf(cartController
+                                              .getItems[index].product);
+                                  if (popularIndex >= 0) {
+                                    Get.toNamed(RouteHelper.getPopularFood(
+                                        popularIndex));
+                                  } else {
+                                    var recommendedIndex =
+                                        Get.find<RecommendedProductController>()
+                                            .recommendedProductList
+                                            .indexOf(cartController
+                                                .getItems[index].product);
+                                    Get.toNamed(RouteHelper.getRecommendedFood(
+                                        recommendedIndex));
+                                  }
                                 },
                                 child: Container(
                                   width: Dimensions.height20 * 5,
