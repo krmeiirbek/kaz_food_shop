@@ -41,17 +41,17 @@ class RecommendedFoodDetail extends StatelessWidget {
                   child: const AppIcon(icon: Icons.clear),
                 ),
                 GetBuilder<PopularProductController>(
-                  builder: (popularProduct) {
+                  builder: (popularProductController) {
                     return GestureDetector(
                       onTap: () {
-                        if(popularProduct.totalItems >= 1) {
+                        if(popularProductController.totalItems >= 1) {
                           Get.toNamed(RouteHelper.getCartPage());
                         }
                       },
                       child: Stack(
                         children: [
                           const AppIcon(icon: Icons.shopping_cart_outlined),
-                          popularProduct.totalItems >= 1
+                          popularProductController.totalItems >= 1
                               ? const Positioned(
                                   right: 0,
                                   top: 0,
@@ -127,7 +127,7 @@ class RecommendedFoodDetail extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: GetBuilder<PopularProductController>(
-        builder: (controller) {
+        builder: (popularProductController) {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -143,7 +143,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        controller.setQuantity(false);
+                        popularProductController.setQuantity(false);
                       },
                       child: AppIcon(
                         icon: Icons.remove,
@@ -153,13 +153,13 @@ class RecommendedFoodDetail extends StatelessWidget {
                       ),
                     ),
                     BigText(
-                      text: '\$${product.price} X ${controller.inCartItems}',
+                      text: '\$${product.price} X ${popularProductController.inCartItems}',
                       color: AppColors.mainBlackColor,
                       size: Dimensions.font26,
                     ),
                     GestureDetector(
                       onTap: () {
-                        controller.setQuantity(true);
+                        popularProductController.setQuantity(true);
                       },
                       child: AppIcon(
                         icon: Icons.add,
@@ -208,7 +208,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        controller.addItem(product);
+                        popularProductController.addItem(product);
                       },
                       child: Container(
                         padding: EdgeInsets.only(

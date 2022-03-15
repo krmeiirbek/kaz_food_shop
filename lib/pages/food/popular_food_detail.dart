@@ -55,17 +55,17 @@ class PopularFoodDetail extends StatelessWidget {
                   child: const AppIcon(icon: Icons.arrow_back_ios),
                 ),
                 GetBuilder<PopularProductController>(
-                  builder: (popularProduct) {
+                  builder: (popularProductController) {
                     return GestureDetector(
                       onTap: () {
-                        if (popularProduct.totalItems >= 1) {
+                        if (popularProductController.totalItems >= 1) {
                           Get.toNamed(RouteHelper.getCartPage());
                         }
                       },
                       child: Stack(
                         children: [
                           const AppIcon(icon: Icons.shopping_cart_outlined),
-                          popularProduct.totalItems >= 1
+                          popularProductController.totalItems >= 1
                               ? const Positioned(
                                   right: 0,
                                   top: 0,
@@ -136,7 +136,7 @@ class PopularFoodDetail extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: GetBuilder<PopularProductController>(
-        builder: (popularProduct) {
+        builder: (popularProductController) {
           return Container(
             height: Dimensions.height30 * 4,
             padding: EdgeInsets.only(
@@ -170,16 +170,16 @@ class PopularFoodDetail extends StatelessWidget {
                     children: [
                       InkWell(
                           onTap: () {
-                            popularProduct.setQuantity(false);
+                            popularProductController.setQuantity(false);
                           },
                           child: const Icon(Icons.remove,
                               color: AppColors.signColor)),
                       SizedBox(width: Dimensions.width5),
-                      BigText(text: '${popularProduct.inCartItems}'),
+                      BigText(text: '${popularProductController.inCartItems}'),
                       SizedBox(width: Dimensions.width5),
                       InkWell(
                         onTap: () {
-                          popularProduct.setQuantity(true);
+                          popularProductController.setQuantity(true);
                         },
                         child:
                             const Icon(Icons.add, color: AppColors.signColor),
@@ -189,7 +189,7 @@ class PopularFoodDetail extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    popularProduct.addItem(product);
+                    popularProductController.addItem(product);
                   },
                   child: Container(
                     padding: EdgeInsets.only(
