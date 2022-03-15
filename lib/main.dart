@@ -17,13 +17,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList();
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Food App',
-      initialRoute: RouteHelper.getSplashPage(),
-      getPages: RouteHelper.routes,
+    return GetBuilder<PopularProductController>(
+      builder: (_) => GetBuilder<RecommendedProductController>(
+        builder: (_) => GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Food App',
+          initialRoute: RouteHelper.getSplashPage(),
+          getPages: RouteHelper.routes,
+        ),
+      ),
     );
   }
 }
