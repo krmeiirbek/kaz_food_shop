@@ -14,8 +14,9 @@ import 'package:kaz_food_shop/widgets/expandable_text_widget.dart';
 
 class PopularFoodDetail extends StatelessWidget {
   final int pageId;
+  final String page;
 
-  const PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  const PopularFoodDetail({Key? key, required this.pageId, required this.page}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,11 @@ class PopularFoodDetail extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(RouteHelper.initial);
+                    if(page == 'cartpage'){
+                      Get.toNamed(RouteHelper.getCartPage());
+                    }else{
+                      Get.toNamed(RouteHelper.getInitial());
+                    }
                   },
                   child: const AppIcon(icon: Icons.arrow_back_ios),
                 ),
