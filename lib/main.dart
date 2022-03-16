@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kaz_food_shop/controllers/cart_controller.dart';
 import 'package:kaz_food_shop/controllers/popular_product_controller.dart';
 import 'package:kaz_food_shop/controllers/recommended_product_controller.dart';
 import 'package:kaz_food_shop/routes/route_helper.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(
       builder: (_) => GetBuilder<RecommendedProductController>(
         builder: (_) => GetMaterialApp(
