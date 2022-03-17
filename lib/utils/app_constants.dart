@@ -1,41 +1,42 @@
 class AppConstants {
-  static const String APP_NAME = 'DBFood';
-  static const int APP_VERSION = 1;
+  static const String appName = 'DBFood';
+  static const int appVersion = 1;
   //https://youtu.be/HCUZ91NVnaM learn here how to set up google map api key
-  static const String MAP_API_KEY="your google map api key";
-  static const String STORE_PREFERENCE='Cart-list';
+  static const String mapAPIKey="your google map api key";
+  static const String storePreference='Cart-list';
+  static const String cartHistoryList='Cart-history-list';
   //your base url
   //https://youtu.be/DjXS9W1HD9U here how to set up the admin panel
-  static const String BASE_URL = 'http://mvs.bslmeiyu.com';
-  static const String REGISTER_URI = '/api/v1/auth/register';
-  static const String LOGIN_URI = '/api/v1/auth/login';
-  static const String TOKEN_URI = '/api/v1/customer/cm-firebase-token';
-  static const String TOPIC = 'all_zone_customer';
-  static const String ZONE_ID = 'zoneId';
-  static const String UPLOADS_URL =BASE_URL+'/uploads/';
+  static const String baseUrl = 'http://mvs.bslmeiyu.com';
+  static const String registerUri = '/api/v1/auth/register';
+  static const String loginUri = '/api/v1/auth/login';
+  static const String tokenUri = '/api/v1/customer/cm-firebase-token';
+  static const String topic = 'all_zone_customer';
+  static const String zoneId = 'zoneId';
+  static const String uploadsUrl =baseUrl+'/uploads/';
 
-  static const String USER_PASSWORD = 'user_password';
-  static const String USER_ADDRESS = 'user_address';
-  static const String USER_NUMBER = 'user_number';
-  static const String USER_COUNTRY_CODE = 'user_country_code';
-  static const String CUSTOMER_INFO_URI = '/api/v1/customer/info';
-  static const String ADDRESS_LIST_URI = '/api/v1/customer/address/list';
-  static const String ZONE_URI = '/api/v1/config/get-zone-id';
-  static const String REMOVE_ADDRESS_URI = '/api/v1/customer/address/delete?address_id=';
-  static const String ADD_ADDRESS_URI = '/api/v1/customer/address/add';
-  static const String UPDATE_ADDRESS_URI = '/api/v1/customer/address/update/';
-  static const String PLACE_DETAILS_URI = '/api/v1/config/place-api-details';
-  static const String PLACE_ORDER_URI = '/api/v1/customer/order/place';
-  static const String GEOCODE_URI = '/api/v1/config/geocode-api';
+  static const String userPassword = 'user_password';
+  static const String userAddress = 'user_address';
+  static const String userNumber = 'user_number';
+  static const String userCountryCode = 'user_country_code';
+  static const String customerInfoUri = '/api/v1/customer/info';
+  static const String addressListUri = '/api/v1/customer/address/list';
+  static const String zoneUri = '/api/v1/config/get-zone-id';
+  static const String removeAddressUri = '/api/v1/customer/address/delete?address_id=';
+  static const String addAddressUri = '/api/v1/customer/address/add';
+  static const String updateAddressUri = '/api/v1/customer/address/update/';
+  static const String placeDetailsUri = '/api/v1/config/place-api-details';
+  static const String placeOrderUri = '/api/v1/customer/order/place';
+  static const String geocodeUri = '/api/v1/config/geocode-api';
 
-  static const String POPULAR_PRODUCT_URI = '/api/v1/products/popular';
-  static const String TOKEN = 'dbshop_token';
-  static const String RECOMMENDED_PRODUCT_URI = '/api/v1/products/recommended';
-  static const String RECOMMENDED_PRODUCT_URI_TEST = '/api/v1/products/test';
-  static const String ORDER_LIST_URI = '/api/v1/customer/order/list';
-  static const String ORDER_CANCEL_URI = '/api/v1/customer/order/cancel';
-  static const String COD_SWITCH_URL = '/api/v1/customer/order/payment-method';
-  static const String ORDER_DETAILS_URI = '/api/v1/customer/order/details?order_id=';
-  static const String TRACK_URI = '/api/v1/customer/order/track?order_id=';
+  static const String popularProductUri = '/api/v1/products/popular';
+  static const String token = 'dbshop_token';
+  static const String recommendedProductUri = '/api/v1/products/recommended';
+  static const String recommendedProductUriTest = '/api/v1/products/test';
+  static const String orderListUri = '/api/v1/customer/order/list';
+  static const String orderCancelUri = '/api/v1/customer/order/cancel';
+  static const String codSwitchUri = '/api/v1/customer/order/payment-method';
+  static const String orderDetailsUri = '/api/v1/customer/order/details?order_id=';
+  static const String trackUri = '/api/v1/customer/order/track?order_id=';
 
 }

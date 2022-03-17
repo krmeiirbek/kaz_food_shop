@@ -17,14 +17,14 @@ class CartRepo {
       cart.add(jsonEncode(element));
     }
 
-    sharedPreferences.setStringList(AppConstants.STORE_PREFERENCE, cart);
+    sharedPreferences.setStringList(AppConstants.storePreference, cart);
   }
 
   List<CartModel> getCartList() {
     List<CartModel> cartList = [];
     List<String> carts = [];
-    if (sharedPreferences.containsKey(AppConstants.STORE_PREFERENCE)) {
-      carts = sharedPreferences.getStringList(AppConstants.STORE_PREFERENCE)!;
+    if (sharedPreferences.containsKey(AppConstants.storePreference)) {
+      carts = sharedPreferences.getStringList(AppConstants.storePreference)!;
     }
 
     for (var element in carts) {
