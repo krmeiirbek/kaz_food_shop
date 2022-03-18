@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:kaz_food_shop/controllers/cart_controller.dart';
 import 'package:kaz_food_shop/utils/app_constants.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
@@ -30,7 +31,7 @@ class CartHistory extends StatelessWidget {
 
     List<int> itemsPerOrder = cartOrderTimeToList();
 
-    int listCounter = -1;
+    int listCounter = 0;
 
     return Scaffold(
       body: Column(
@@ -73,7 +74,15 @@ class CartHistory extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const BigText(text: '26/01/2001'),
+                            (() {
+                              DateTime parseDate =
+                                  DateFormat('yyyy-MM-dd HH:mm:ss').parse(
+                                      getCartHistoryList[listCounter].time!);
+                              var outputFormat =
+                                  DateFormat('dd/MM/yyyy hh:mm a');
+                              var outputDate = outputFormat.format(parseDate);
+                              return BigText(text: outputDate);
+                            }()),
                             SizedBox(height: Dimensions.height10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,7 +110,7 @@ class CartHistory extends StatelessWidget {
                                                 image: NetworkImage(
                                                     AppConstants.uploadsUrl +
                                                         getCartHistoryList[
-                                                                listCounter]
+                                                                listCounter - 1]
                                                             .img!),
                                               ),
                                             ),
