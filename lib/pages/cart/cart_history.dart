@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:kaz_food_shop/controllers/cart_controller.dart';
+import 'package:kaz_food_shop/models/cart_model.dart';
+import 'package:kaz_food_shop/routes/route_helper.dart';
 import 'package:kaz_food_shop/utils/app_constants.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
 import 'package:kaz_food_shop/utils/dimensions.dart';
@@ -26,11 +28,17 @@ class CartHistory extends StatelessWidget {
       }
     }
 
-    List<int> cartOrderTimeToList() {
+    List<int> cartItemsPerOrderToList() {
       return cartItemsPerOrder.entries.map((e) => e.value).toList();
     }
 
-    List<int> itemsPerOrder = cartOrderTimeToList();
+    List<String> cartOrderTimeToList() {
+      return cartItemsPerOrder.entries.map((e) => e.key).toList();
+    }
+
+    List<int> itemsPerOrder = cartItemsPerOrderToList();
+
+    List<String> orderTime = cartOrderTimeToList();
 
     int listCounter = 0;
 
@@ -134,21 +142,36 @@ class CartHistory extends StatelessWidget {
                                         text: '${itemsPerOrder[i]} Items',
                                         color: AppColors.titleColor,
                                       ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: Dimensions.width10,
-                                          vertical: Dimensions.height5,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                              Dimensions.radius15 / 2),
-                                          border: Border.all(
-                                              width: 1,
-                                              color: AppColors.mainColor),
-                                        ),
-                                        child: const SmallText(
-                                          text: 'one more',
-                                          color: AppColors.mainColor,
+                                      GestureDetector(
+                                        onTap: (){
+                                          Map<int, CartModel> moreOrder = {};
+                                          for(int j = 0; j<getCartHistoryList.length; j++){
+                                            if(getCartHistoryList[j].time == orderTime[i]){
+                                              moreOrder.putIfAbsent(getCartHistoryList[j].id!, () {
+                                                return getCartHistoryList[j];
+                                              });
+                                            }
+                                          }
+                                          Get.find<CartController>().setItems = moreOrder;
+                                          Get.find<CartController>().addToCartList();
+                                          Get.toNamed(RouteHelper.getCartPage());
+                                        },
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: Dimensions.width10,
+                                            vertical: Dimensions.height5,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimensions.radius15 / 2),
+                                            border: Border.all(
+                                                width: 1,
+                                                color: AppColors.mainColor),
+                                          ),
+                                          child: const SmallText(
+                                            text: 'one more',
+                                            color: AppColors.mainColor,
+                                          ),
                                         ),
                                       ),
                                     ],
