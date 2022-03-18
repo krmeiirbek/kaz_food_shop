@@ -35,7 +35,7 @@ class CartController extends GetxController {
           );
         },
       );
-      if(totalQuantity <= 0){
+      if (totalQuantity <= 0) {
         _items.remove(product.id);
       }
     } else {
@@ -110,14 +110,14 @@ class CartController extends GetxController {
     return storageItems;
   }
 
-  set setCart(List<CartModel> items){
+  set setCart(List<CartModel> items) {
     storageItems = items;
-    for(int i = 0; i < storageItems.length; i++){
+    for (int i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }
   }
 
-  void addToHistory(){
+  void addToHistory() {
     cartRepo.addToCartHistoryList();
     clear();
   }
@@ -125,5 +125,9 @@ class CartController extends GetxController {
   void clear() {
     _items.clear();
     update();
+  }
+
+  List<CartModel> getCartHistoryList() {
+    return cartRepo.getCartHistoryList();
   }
 }

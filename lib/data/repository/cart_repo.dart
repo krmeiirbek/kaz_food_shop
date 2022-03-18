@@ -13,8 +13,10 @@ class CartRepo {
   List<String> cartHistory = [];
 
   void addToCartList(List<CartModel> cartList) {
+    var time = DateTime.now().toString();
     cart = [];
     for (var element in cartList) {
+      element.time = time;
       cart.add(jsonEncode(element));
     }
 
@@ -35,7 +37,7 @@ class CartRepo {
     return cartList;
   }
 
-  List<CartModel> getCartHistory() {
+  List<CartModel> getCartHistoryList() {
     if (sharedPreferences.containsKey(AppConstants.cartHistoryList)) {
       cartHistory = [];
       cartHistory =
