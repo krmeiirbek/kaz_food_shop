@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kaz_food_shop/controllers/cart_controller.dart';
+import 'package:kaz_food_shop/utils/app_constants.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
 import 'package:kaz_food_shop/utils/dimensions.dart';
 import 'package:kaz_food_shop/widgets/app_icon.dart';
 import 'package:kaz_food_shop/widgets/big_text.dart';
+import 'package:kaz_food_shop/widgets/small_text.dart';
 
 class CartHistory extends StatelessWidget {
   const CartHistory({Key? key}) : super(key: key);
@@ -26,7 +28,9 @@ class CartHistory extends StatelessWidget {
       return cartItemsPerOrder.entries.map((e) => e.value).toList();
     }
 
-    List<int> orderTimes = cartOrderTimeToList();
+    List<int> itemsPerOrder = cartOrderTimeToList();
+
+    int listCounter = -1;
 
     return Scaffold(
       body: Column(
@@ -58,10 +62,96 @@ class CartHistory extends StatelessWidget {
                 left: Dimensions.height20,
                 right: Dimensions.height20,
               ),
-              child: ListView(
-                children: [
-                  Text('hi there'),
-                ],
+              child: MediaQuery.removePadding(
+                context: context,
+                removeTop: true,
+                child: ListView(
+                  children: [
+                    for (int i = 0; i < itemsPerOrder.length; i++)
+                      Container(
+                        height: Dimensions.height30 * 4,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const BigText(text: '26/01/2001'),
+                            SizedBox(height: Dimensions.height10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Wrap(
+                                  direction: Axis.horizontal,
+                                  children:
+                                      List.generate(itemsPerOrder[i], (index) {
+                                    if (listCounter <
+                                        getCartHistoryList.length) {
+                                      listCounter++;
+                                    }
+                                    return index <= 2
+                                        ? Container(
+                                            height: Dimensions.height20 * 4,
+                                            width: Dimensions.width20 * 4,
+                                            margin: EdgeInsets.only(
+                                                right: Dimensions.width5),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                      Dimensions.radius15 / 2),
+                                              image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: NetworkImage(
+                                                    AppConstants.uploadsUrl +
+                                                        getCartHistoryList[
+                                                                listCounter]
+                                                            .img!),
+                                              ),
+                                            ),
+                                          )
+                                        : const SizedBox();
+                                  }),
+                                ),
+                                SizedBox(
+                                  height: Dimensions.height20 * 4,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      const SmallText(
+                                        text: 'Total',
+                                        color: AppColors.titleColor,
+                                      ),
+                                      BigText(
+                                        text: '${itemsPerOrder[i]} Items',
+                                        color: AppColors.titleColor,
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: Dimensions.width10,
+                                          vertical: Dimensions.height5,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              Dimensions.radius15 / 2),
+                                          border: Border.all(
+                                              width: 1,
+                                              color: AppColors.mainColor),
+                                        ),
+                                        child: const SmallText(
+                                          text: 'one more',
+                                          color: AppColors.mainColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        margin: EdgeInsets.only(bottom: Dimensions.height20),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
