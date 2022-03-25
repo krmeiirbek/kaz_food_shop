@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:kaz_food_shop/pages/account/account_page.dart';
 import 'package:kaz_food_shop/pages/cart/cart_history.dart';
 import 'package:kaz_food_shop/pages/home/main_food_page.dart';
 import 'package:kaz_food_shop/utils/colors.dart';
@@ -28,9 +29,7 @@ class _HomePageState extends State<HomePage> {
         child: Text('next page'),
       ),
       CartHistory(),
-      Center(
-        child: Text('next next next page'),
-      ),
+      AccountPage(),
     ];
   }
 
